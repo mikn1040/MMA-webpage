@@ -64,4 +64,34 @@ document.addEventListener('DOMContentLoaded', () => {
       this.style.transition = 'background 0.2s ease';
     });
   });
+
+  // 🕺 Easter egg: Konami code (↑↑↓↓←→←→BA) → Rickroll
+  const RICKROLL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+  const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+  let konamiIndex = 0;
+  document.addEventListener('keydown', (e) => {
+    if (e.keyCode === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        window.open(RICKROLL, '_blank');
+        konamiIndex = 0;
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  // 🕺 Easter egg: logo 5 clicks → Rickroll
+  const logo = document.querySelector('.nav-logo');
+  if (logo) {
+    let logoClicks = 0;
+    logo.addEventListener('click', (e) => {
+      logoClicks++;
+      if (logoClicks >= 5) {
+        e.preventDefault();
+        window.open(RICKROLL, '_blank');
+        logoClicks = 0;
+      }
+    });
+  }
 });
