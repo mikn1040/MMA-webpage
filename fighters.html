@@ -37,323 +37,48 @@
   </header>
 
   <section class="section">
-    <div class="section-nav">
-      <a href="#ufc-fighters">UFC</a>
-      <a href="#rizin-fighters">RIZIN</a>
-      <a href="#one-fighters">ONE</a>
-      <a href="#bellator-fighters">Bellator</a>
-    </div>
+    <div class="search-section">
+      <div class="search-bar">
+        <span class="search-bar-icon">&#x1F50D;</span>
+        <input type="text" id="search-input" placeholder="選手名、ニックネーム、階級、スタイルで検索...">
+      </div>
 
-    <div id="ufc-fighters">
-      <h2 class="weight-category-label">UFC 所属選手</h2>
-      <div class="fighter-grid">
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);">
-            <span class="fighter-flag">🇷🇺 RUS</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">イスラム・マカチェフ</h3>
-            <div class="fighter-nickname">-</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライト級</div>
-              <div class="fighter-stat"><span>所属</span>UFC</div>
-              <div class="fighter-stat"><span>身長</span>178cm</div>
-              <div class="fighter-stat"><span>リーチ</span>179cm</div>
-            </div>
-            <div class="fighter-record">26-1-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">レスリング / サンボ</span></div>
-          </div>
-        </div>
+      <div class="filter-orgs" id="filter-orgs">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="UFC">UFC</button>
+        <button class="filter-btn" data-filter="RIZIN">RIZIN</button>
+        <button class="filter-btn" data-filter="ONE">ONE</button>
+        <button class="filter-btn" data-filter="Bellator">Bellator</button>
+        <button class="filter-btn" data-filter="PFL">PFL</button>
+        <button class="filter-btn" data-filter="レジェンド">レジェンド</button>
+      </div>
 
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a2a 100%);">
-            <span class="fighter-flag">🇺🇸 USA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">ジョン・ジョーンズ</h3>
-            <div class="fighter-nickname">"Bones"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ヘビー級</div>
-              <div class="fighter-stat"><span>所属</span>UFC</div>
-              <div class="fighter-stat"><span>身長</span>193cm</div>
-              <div class="fighter-stat"><span>リーチ</span>215cm</div>
-            </div>
-            <div class="fighter-record">27-1 (1 NC)</div>
-            <div style="margin-top:8px;"><span class="fighter-style">レスリング / 打撃</span></div>
-          </div>
-        </div>
+      <div class="filter-row">
+        <select id="filter-weight">
+          <option value="all">全階級</option>
+        </select>
+        <select id="filter-style">
+          <option value="all">全スタイル</option>
+        </select>
+        <select id="sort-by">
+          <option value="name">名前順</option>
+          <option value="wins">勝利数順</option>
+        </select>
+      </div>
 
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 100%);">
-            <span class="fighter-flag">🇧🇷 BRA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">アレックス・ペレイラ</h3>
-            <div class="fighter-nickname">"Poatan"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライトヘビー級</div>
-              <div class="fighter-stat"><span>所属</span>UFC</div>
-              <div class="fighter-stat"><span>身長</span>193cm</div>
-              <div class="fighter-stat"><span>リーチ</span>200cm</div>
-            </div>
-            <div class="fighter-record">11-2-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">キックボクシング</span></div>
-          </div>
-        </div>
+      <div class="results-count">
+        <span id="results-count">200</span>人の選手が見つかりました
+      </div>
 
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a00 100%);">
-            <span class="fighter-flag">🇧🇷 BRA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">チャールズ・オリベイラ</h3>
-            <div class="fighter-nickname">"Do Bronx"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライト級</div>
-              <div class="fighter-stat"><span>所属</span>UFC</div>
-              <div class="fighter-stat"><span>身長</span>178cm</div>
-              <div class="fighter-stat"><span>リーチ</span>188cm</div>
-            </div>
-            <div class="fighter-record">34-9 (1 NC)</div>
-            <div style="margin-top:8px;"><span class="fighter-style">ブラジリアン柔術</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a2a 100%);">
-            <span class="fighter-flag">🇺🇸 USA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">ショーン・オマリー</h3>
-            <div class="fighter-nickname">"Sugar"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>バンタム級</div>
-              <div class="fighter-stat"><span>所属</span>UFC</div>
-              <div class="fighter-stat"><span>身長</span>180cm</div>
-              <div class="fighter-stat"><span>リーチ</span>183cm</div>
-            </div>
-            <div class="fighter-record">18-1 (1 NC)</div>
-            <div style="margin-top:8px;"><span class="fighter-style">ボクシング / 打撃</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0000 100%);">
-            <span class="fighter-flag">🇺🇸 USA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">ジャスティン・ゲイジー</h3>
-            <div class="fighter-nickname">"The Highlight"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライト級</div>
-              <div class="fighter-stat"><span>所属</span>UFC</div>
-              <div class="fighter-stat"><span>身長</span>180cm</div>
-              <div class="fighter-stat"><span>リーチ</span>178cm</div>
-            </div>
-            <div class="fighter-record">25-5-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">レスリング / 打撃</span></div>
-          </div>
-        </div>
+      <div id="no-results" class="no-results" style="display:none;">
+        <p>条件に一致する選手が見つかりませんでした。</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);">検索条件を変えてお試しください。</p>
       </div>
     </div>
 
-    <div id="rizin-fighters" style="margin-top:60px;">
-      <h2 class="weight-category-label">RIZIN 所属選手</h2>
-      <div class="fighter-grid">
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a00 100%);">
-            <span class="fighter-flag">🇯🇵 JPN</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">堀口恭司</h3>
-            <div class="fighter-nickname">"The Typhoon"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>バンタム級</div>
-              <div class="fighter-stat"><span>所属</span>RIZIN</div>
-              <div class="fighter-stat"><span>身長</span>165cm</div>
-              <div class="fighter-stat"><span>リーチ</span>168cm</div>
-            </div>
-            <div class="fighter-record">31-5-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">打撃 / レスリング</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a2a0a 100%);">
-            <span class="fighter-flag">🇯🇵 JPN</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">扇久保博正</h3>
-            <div class="fighter-nickname">-</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>フライ級</div>
-              <div class="fighter-stat"><span>所属</span>RIZIN</div>
-              <div class="fighter-stat"><span>身長</span>166cm</div>
-              <div class="fighter-stat"><span>リーチ</span>166cm</div>
-            </div>
-            <div class="fighter-record">26-9-2</div>
-            <div style="margin-top:8px;"><span class="fighter-style">グラップリング</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a00 100%);">
-            <span class="fighter-flag">🇯🇵 JPN</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">那須川天心</h3>
-            <div class="fighter-nickname">"The Prodigy"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>（現ボクシング）</div>
-              <div class="fighter-stat"><span>所属</span>RIZIN（元）</div>
-              <div class="fighter-stat"><span>身長</span>173cm</div>
-              <div class="fighter-stat"><span>リーチ</span>170cm</div>
-            </div>
-            <div class="fighter-record">5-0-0 (MMA)</div>
-            <div style="margin-top:8px;"><span class="fighter-style">キックボクシング</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #00002a 100%);">
-            <span class="fighter-flag">🇧🇷 BRA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">クレベル・コイケ</h3>
-            <div class="fighter-nickname">"Koike"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>フェザー級</div>
-              <div class="fighter-stat"><span>所属</span>RIZIN</div>
-              <div class="fighter-stat"><span>身長</span>170cm</div>
-              <div class="fighter-stat"><span>リーチ</span>173cm</div>
-            </div>
-            <div class="fighter-record">20-6-1</div>
-            <div style="margin-top:8px;"><span class="fighter-style">ブラジリアン柔術</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="one-fighters" style="margin-top:60px;">
-      <h2 class="weight-category-label">ONE Championship 所属選手</h2>
-      <div class="fighter-grid">
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #001a00 100%);">
-            <span class="fighter-flag">🇺🇸 USA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">デメトリアス・ジョンソン</h3>
-            <div class="fighter-nickname">"Mighty Mouse"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>フライ級</div>
-              <div class="fighter-stat"><span>所属</span>ONE</div>
-              <div class="fighter-stat"><span>身長</span>160cm</div>
-              <div class="fighter-stat"><span>リーチ</span>166cm</div>
-            </div>
-            <div class="fighter-record">25-4-1</div>
-            <div style="margin-top:8px;"><span class="fighter-style">オールラウンド</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0000 100%);">
-            <span class="fighter-flag">🇸🇬 SGP</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">アンジェラ・リー</h3>
-            <div class="fighter-nickname">"Unstoppable"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>女子ストロー級</div>
-              <div class="fighter-stat"><span>所属</span>ONE</div>
-              <div class="fighter-stat"><span>身長</span>168cm</div>
-              <div class="fighter-stat"><span>リーチ</span>170cm</div>
-            </div>
-            <div class="fighter-record">11-3-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">ブラジリアン柔術</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a00 100%);">
-            <span class="fighter-flag">🇯🇵 JPN</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">青木真也</h3>
-            <div class="fighter-nickname">"Tobikan Judan"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライト級</div>
-              <div class="fighter-stat"><span>所属</span>ONE</div>
-              <div class="fighter-stat"><span>身長</span>181cm</div>
-              <div class="fighter-stat"><span>リーチ</span>185cm</div>
-            </div>
-            <div class="fighter-record">47-11-1</div>
-            <div style="margin-top:8px;"><span class="fighter-style">柔術 / 柔道</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="bellator-fighters" style="margin-top:60px;">
-      <h2 class="weight-category-label">Bellator 所属選手</h2>
-      <div class="fighter-grid">
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #002a00 100%);">
-            <span class="fighter-flag">🇧🇷 BRA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">パトリシオ・ピットブル</h3>
-            <div class="fighter-nickname">"Pitbull"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>フェザー級</div>
-              <div class="fighter-stat"><span>所属</span>Bellator</div>
-              <div class="fighter-stat"><span>身長</span>175cm</div>
-              <div class="fighter-stat"><span>リーチ</span>180cm</div>
-            </div>
-            <div class="fighter-record">35-8-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">打撃 / ブラジリアン柔術</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #1a0a00 100%);">
-            <span class="fighter-flag">🇺🇸 USA</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">マイケル・チャンドラー</h3>
-            <div class="fighter-nickname">"Iron"</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライト級</div>
-              <div class="fighter-stat"><span>所属</span>UFC（元Bellator王者）</div>
-              <div class="fighter-stat"><span>身長</span>173cm</div>
-              <div class="fighter-stat"><span>リーチ</span>177cm</div>
-            </div>
-            <div class="fighter-record">23-8-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">レスリング / 打撃</span></div>
-          </div>
-        </div>
-
-        <div class="fighter-card fade-in">
-          <div class="fighter-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a0a00 100%);">
-            <span class="fighter-flag">🇷🇺 RUS</span>
-          </div>
-          <div class="fighter-body">
-            <h3 class="fighter-name">シャブリ・マゴメドフ</h3>
-            <div class="fighter-nickname">-</div>
-            <div class="fighter-stats">
-              <div class="fighter-stat"><span>階級</span>ライト級</div>
-              <div class="fighter-stat"><span>所属</span>Bellator</div>
-              <div class="fighter-stat"><span>身長</span>180cm</div>
-              <div class="fighter-stat"><span>リーチ</span>182cm</div>
-            </div>
-            <div class="fighter-record">14-1-0</div>
-            <div style="margin-top:8px;"><span class="fighter-style">レスリング / サンボ</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="fighter-container"></div>
   </section>
 
-  <!-- 🕺 Easter egg -->
   <section class="section" style="padding-top:0;">
     <div class="fighter-grid">
       <div class="fighter-card fade-in" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" style="cursor:pointer;">
@@ -435,5 +160,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/fighters.js"></script>
 </body>
 </html>

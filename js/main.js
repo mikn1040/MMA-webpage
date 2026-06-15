@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Nav hide on scroll down, show on scroll up
+  // Nav hide on scroll down, show on scroll up + shadow
   let lastScroll = 0;
   const nav = document.querySelector('.nav');
   if (nav) {
@@ -21,6 +21,30 @@ document.addEventListener('DOMContentLoaded', () => {
       if (curr > lastScroll && curr > 100) nav.classList.add('hidden');
       else nav.classList.remove('hidden');
       lastScroll = curr;
+      if (curr > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+  }
+
+  // Scroll progress bar
+  const progressBar = document.querySelector('.scroll-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    });
+  }
+
+  // Back to top button
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 300);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
@@ -57,31 +81,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Table row hover parallax micro-effect (visual only)
-  const rows = document.querySelectorAll('.weight-table tbody tr');
-  rows.forEach(row => {
-    row.addEventListener('mouseenter', function() {
-      this.style.transition = 'background 0.2s ease';
+  // Section nav scroll spy
+  const sectionNav = document.querySelector('.section-nav');
+  if (sectionNav) {
+    const links = sectionNav.querySelectorAll('a');
+    const sections = [];
+    links.forEach(link => {
+      const id = link.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        const el = document.querySelector(id);
+        if (el) sections.push({ el, link });
+      }
     });
-  });
+    if (sections.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
+            const match = sections.find(s => s.el === entry.target);
+            if (match) match.link.classList.add('active');
+          }
+        });
+      }, { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' });
+      sections.forEach(s => observer.observe(s.el));
+    }
+  }
 
-  // 🕺 Easter egg: Konami code (↑↑↓↓←→←→BA) → Rickroll
+  // 🕺 リックロールコード (↑↑↓↓←→←→BA)
   const RICKROLL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
   const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
   let konamiIndex = 0;
   document.addEventListener('keydown', (e) => {
-    if (e.keyCode === konamiCode[konamiIndex]) {
-      konamiIndex++;
-      if (konamiIndex === konamiCode.length) {
-        window.open(RICKROLL, '_blank');
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'b' || e.key === 'a' || e.key === 'B' || e.key === 'A') {
+      const keyMap = { ArrowUp: 38, ArrowDown: 40, ArrowLeft: 37, ArrowRight: 39, b: 66, B: 66, a: 65, A: 65 };
+      const code = keyMap[e.key] || e.keyCode;
+      if (code === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          window.open(RICKROLL, '_blank');
+          konamiIndex = 0;
+        }
+      } else {
         konamiIndex = 0;
       }
-    } else {
-      konamiIndex = 0;
     }
   });
 
-  // 🕺 Easter egg: logo 5 clicks → Rickroll
+  // 🕺 Easter egg: logo 5 clicks
   const logo = document.querySelector('.nav-logo');
   if (logo) {
     let logoClicks = 0;
