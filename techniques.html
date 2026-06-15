@@ -5,9 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>技術解説 | MMA SPIRIT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="scroll-progress"></div>
 
   <nav class="nav">
     <div class="nav-inner">
@@ -143,6 +148,18 @@
           <p class="tech-card-desc">サイドコントロール、マウント、バックコントロール、ガードポジション。ポジションを支配し、打撃とサブミッションの脅威を組み合わせる総合的な技術が求められます。</p>
         </div>
       </div>
+
+      <!-- 🕺 Easter egg -->
+      <div class="tech-card fade-in" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" style="cursor:pointer;">
+        <div class="tech-card-image" style="background-image: linear-gradient(135deg, #ff69b4 0%, #4b0082 100%);">
+          <div class="tech-overlay"></div>
+        </div>
+        <div class="tech-card-body">
+          <div class="tech-card-label" style="color:#ff69b4;">Legendary</div>
+          <h3 class="tech-card-title">ネバーギブアップ・ディフェンス</h3>
+          <p class="tech-card-desc">伝説の英国人ファイター、リック・アストリーが編み出した究極の防御技術。相手の攻撃を一切諦めずに受け流し、試合を「let you down」しないことで知られる。その習得には「running around」と「desert」を跨ぐ過酷なトレーニングが必要とされる。</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -210,6 +227,7 @@
     </div>
   </footer>
 
+  <button class="back-to-top" aria-label="トップへ戻る">↑</button>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -5,9 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ランキング | MMA SPIRIT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="scroll-progress"></div>
 
   <nav class="nav">
     <div class="nav-inner">
@@ -58,7 +63,7 @@
           <div class="rank-name">ジョン・ジョーンズ</div>
           <div class="rank-detail">UFC ヘビー級王者 / アメリカ</div>
         </div>
-        <div class="rank-stat">27-1-0</div>
+        <div class="rank-stat">27-1 (1 NC)</div>
       </div>
       <div class="rank-item">
         <div class="rank-number">3</div>
@@ -72,15 +77,15 @@
         <div class="rank-number">4</div>
         <div class="rank-info">
           <div class="rank-name">レオン・エドワーズ</div>
-          <div class="rank-detail">UFC ウェルター級王者 / イギリス</div>
+          <div class="rank-detail">UFC ウェルター級 (元王者) / イギリス</div>
         </div>
-        <div class="rank-stat">22-3-0</div>
+        <div class="rank-stat">22-3 (1 NC)</div>
       </div>
       <div class="rank-item">
         <div class="rank-number">5</div>
         <div class="rank-info">
           <div class="rank-name">デメトリアス・ジョンソン</div>
-          <div class="rank-detail">ONE フライ級王者 / アメリカ</div>
+          <div class="rank-detail">ONE フライ級 (元王者) / アメリカ</div>
         </div>
         <div class="rank-stat">25-4-1</div>
       </div>
@@ -96,7 +101,7 @@
         <div class="rank-number">7</div>
         <div class="rank-info">
           <div class="rank-name">パトリシオ・ピットブル</div>
-          <div class="rank-detail">Bellator フェザー級王者 / ブラジル</div>
+          <div class="rank-detail">Bellator フェザー級 (元王者) / ブラジル</div>
         </div>
         <div class="rank-stat">35-8-0</div>
       </div>
@@ -104,7 +109,7 @@
         <div class="rank-number">8</div>
         <div class="rank-info">
           <div class="rank-name">アンジェラ・リー</div>
-          <div class="rank-detail">ONE 女子ストロー級王者 / シンガポール</div>
+          <div class="rank-detail">ONE 女子ストロー級 (元王者) / シンガポール</div>
         </div>
         <div class="rank-stat">11-3-0</div>
       </div>
@@ -137,7 +142,7 @@
     <div class="rank-list fade-in" style="margin-top:32px;">
       <div style="margin-bottom:32px;">
         <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:600; margin-bottom:12px; color:var(--gold-primary);">ヘビー級</h3>
-        <div class="rank-item"><div class="rank-number">C</div><div class="rank-info"><div class="rank-name">ジョン・ジョーンズ</div><div class="rank-detail">UFC 王者</div></div><div class="rank-stat">27-1-0</div></div>
+        <div class="rank-item"><div class="rank-number">C</div><div class="rank-info"><div class="rank-name">ジョン・ジョーンズ</div><div class="rank-detail">UFC 王者</div></div><div class="rank-stat">27-1 (1 NC)</div></div>
         <div class="rank-item"><div class="rank-number">1</div><div class="rank-info"><div class="rank-name">スティーペ・ミオシッチ</div><div class="rank-detail">UFC</div></div><div class="rank-stat">20-5-0</div></div>
         <div class="rank-item"><div class="rank-number">2</div><div class="rank-info"><div class="rank-name">シリル・ガーン</div><div class="rank-detail">UFC</div></div><div class="rank-stat">12-2-0</div></div>
         <div class="rank-item"><div class="rank-number">3</div><div class="rank-info"><div class="rank-name">トム・アスピナル</div><div class="rank-detail">UFC (暫定王者)</div></div><div class="rank-stat">14-3-0</div></div>
@@ -148,18 +153,18 @@
       <div style="margin-bottom:32px;">
         <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:600; margin-bottom:12px; color:var(--gold-primary);">ライト級</h3>
         <div class="rank-item"><div class="rank-number">C</div><div class="rank-info"><div class="rank-name">イスラム・マカチェフ</div><div class="rank-detail">UFC 王者</div></div><div class="rank-stat">26-1-0</div></div>
-        <div class="rank-item"><div class="rank-number">1</div><div class="rank-info"><div class="rank-name">チャールズ・オリベイラ</div><div class="rank-detail">UFC</div></div><div class="rank-stat">34-9-0</div></div>
+        <div class="rank-item"><div class="rank-number">1</div><div class="rank-info"><div class="rank-name">チャールズ・オリベイラ</div><div class="rank-detail">UFC</div></div><div class="rank-stat">34-9 (1 NC)</div></div>
         <div class="rank-item"><div class="rank-number">2</div><div class="rank-info"><div class="rank-name">ジャスティン・ゲイジー</div><div class="rank-detail">UFC</div></div><div class="rank-stat">25-5-0</div></div>
-        <div class="rank-item"><div class="rank-number">3</div><div class="rank-info"><div class="rank-name">ダスティン・ポイエー</div><div class="rank-detail">UFC</div></div><div class="rank-stat">30-8-0</div></div>
+        <div class="rank-item"><div class="rank-number">3</div><div class="rank-info"><div class="rank-name">ダスティン・ポイエー</div><div class="rank-detail">UFC</div></div><div class="rank-stat">30-8 (1 NC)</div></div>
         <div class="rank-item"><div class="rank-number">4</div><div class="rank-info"><div class="rank-name">アルマン・ツァルキヤン</div><div class="rank-detail">UFC</div></div><div class="rank-stat">21-3-0</div></div>
         <div class="rank-item"><div class="rank-number">5</div><div class="rank-info"><div class="rank-name">マテウス・ガムロット</div><div class="rank-detail">UFC</div></div><div class="rank-stat">24-3-0</div></div>
       </div>
 
       <div style="margin-bottom:32px;">
         <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:600; margin-bottom:12px; color:var(--gold-primary);">バンタム級</h3>
-        <div class="rank-item"><div class="rank-number">C</div><div class="rank-info"><div class="rank-name">堀口恭司</div><div class="rank-detail">RIZIN 王者</div></div><div class="rank-stat">31-5-0</div></div>
-        <div class="rank-item"><div class="rank-number">1</div><div class="rank-info"><div class="rank-name">ショーン・オマリー</div><div class="rank-detail">UFC</div></div><div class="rank-stat">18-1-0</div></div>
-        <div class="rank-item"><div class="rank-number">2</div><div class="rank-info"><div class="rank-name">メラブ・ドバリシビリ</div><div class="rank-detail">UFC</div></div><div class="rank-stat">17-4-0</div></div>
+        <div class="rank-item"><div class="rank-number">C</div><div class="rank-info"><div class="rank-name">メラブ・ドバリシビリ</div><div class="rank-detail">UFC 王者</div></div><div class="rank-stat">17-4-0</div></div>
+        <div class="rank-item"><div class="rank-number">1</div><div class="rank-info"><div class="rank-name">堀口恭司</div><div class="rank-detail">RIZIN 王者</div></div><div class="rank-stat">31-5-0</div></div>
+        <div class="rank-item"><div class="rank-number">2</div><div class="rank-info"><div class="rank-name">ショーン・オマリー</div><div class="rank-detail">UFC</div></div><div class="rank-stat">18-1 (1 NC)</div></div>
         <div class="rank-item"><div class="rank-number">3</div><div class="rank-info"><div class="rank-name">アルジャメイン・スターリング</div><div class="rank-detail">UFC</div></div><div class="rank-stat">23-4-0</div></div>
         <div class="rank-item"><div class="rank-number">4</div><div class="rank-info"><div class="rank-name">コーリー・サンドハーゲン</div><div class="rank-detail">UFC</div></div><div class="rank-stat">17-5-0</div></div>
         <div class="rank-item"><div class="rank-number">5</div><div class="rank-info"><div class="rank-name">ピョートル・ヤン</div><div class="rank-detail">UFC</div></div><div class="rank-stat">17-5-0</div></div>
@@ -169,6 +174,17 @@
     <div class="info-box fade-in">
       <div class="info-box-title">注意事項</div>
       <p>このランキングは各団体の公式ランキングおよびファン投票を参考にした非公式のものです。最新の正確なランキングは各団体の公式サイトをご確認ください。</p>
+    </div>
+
+    <div class="info-box fade-in" style="margin-top:24px;">
+      <div class="info-box-title">参考資料</div>
+      <p style="font-size:0.9rem; color:var(--text-secondary);">戦績・ランキング情報の正確性向上のため、以下のWikipedia記事を参考にしています。</p>
+      <div style="font-size:0.85rem; color:var(--text-secondary); display:flex; flex-wrap:wrap; gap:8px 24px;">
+        <a href="https://en.wikipedia.org/wiki/Ultimate_Fighting_Championship" target="_blank" rel="noopener">UFC</a>
+        <a href="https://en.wikipedia.org/wiki/RIZIN_Fighting_Federation" target="_blank" rel="noopener">RIZIN</a>
+        <a href="https://en.wikipedia.org/wiki/ONE_Championship" target="_blank" rel="noopener">ONE Championship</a>
+        <a href="https://en.wikipedia.org/wiki/Bellator_MMA" target="_blank" rel="noopener">Bellator</a>
+      </div>
     </div>
   </section>
 
@@ -207,6 +223,7 @@
     </div>
   </footer>
 
+  <button class="back-to-top" aria-label="トップへ戻る">↑</button>
   <script src="js/main.js"></script>
 </body>
 </html>
