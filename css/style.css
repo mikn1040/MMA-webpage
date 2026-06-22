@@ -431,6 +431,8 @@ body {
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 4px;
+  color:rgb(220, 220, 220);
+  text-decoration: rgba(255, 255, 255, 0)
 }
 
 .org-region {
