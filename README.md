@@ -1,2 +1,1 @@
-https://mma.gob.jp/index.html
-ここで公開中
+AIで生成したサイトに変更を加えたサイトです。
