@@ -1,2 +1,1 @@
-https://mma.gob.jp/index.html
-ここで公開中
+どこで公開しよう
