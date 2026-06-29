@@ -1,6 +1,6 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register(new URL('../sw.js', window.location.href)).catch(() => {});
   });
 }
 
@@ -189,6 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let spawnCooldown = 90;
     let distance = 0;
     let punchFlash = 0;
+    let lastTime = 0;
+    let nextCloudSpawn = 0;
 
     const dino = {
       x: DINO_X,
@@ -198,15 +200,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function addParticles(x, y, color, count) {
-      for (let i = 0; i < count; i++) {
+      const burst = Math.max(4, count + Math.floor((Math.random() - 0.5) * 6));
+      for (let i = 0; i < burst; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const spd = 1.5 + Math.random() * 4;
+        const spd = 1.2 + Math.random() * 4.8;
         particles.push({
           x, y,
           vx: Math.cos(angle) * spd,
-          vy: Math.sin(angle) * spd - 0.8,
-          life: 18 + Math.random() * 16,
-          size: 2 + Math.random() * 3,
+          vy: Math.sin(angle) * spd - (0.4 + Math.random() * 1.2),
+          life: 14 + Math.random() * 18,
+          size: 2 + Math.random() * 4,
           color
         });
       }
@@ -215,17 +218,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function spawnObstacle() {
       const typeRoll = Math.random();
       let type = 'cactus';
-      if (typeRoll > 0.78) type = 'bird';
-      else if (typeRoll > 0.48) type = 'tall';
+      if (typeRoll > 0.72) type = 'bird';
+      else if (typeRoll > 0.42) type = 'tall';
 
-      const base = { x: W + 40, passed: false, hit: false, type };
+      const base = { x: W + 40 + Math.random() * 50, passed: false, hit: false, type };
       if (type === 'bird') {
-        base.w = 36; base.h = 24; base.y = Math.random() > 0.5 ? 312 : 276;
+        base.w = 34 + Math.floor(Math.random() * 10);
+        base.h = 22 + Math.floor(Math.random() * 10);
+        base.y = Math.random() > 0.5 ? 312 : 276 + Math.floor(Math.random() * 20);
       } else if (type === 'tall') {
-        base.w = 22; base.h = 56; base.y = GROUND_Y - 56;
+        base.w = 18 + Math.floor(Math.random() * 10);
+        base.h = 48 + Math.floor(Math.random() * 20);
+        base.y = GROUND_Y - base.h;
       } else {
         base.w = 24 + Math.floor(Math.random() * 10);
-        base.h = 32 + Math.floor(Math.random() * 12);
+        base.h = 28 + Math.floor(Math.random() * 16);
         base.y = GROUND_Y - base.h;
       }
       obstacles.push(base);
@@ -244,8 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
       shake = 0;
       flash = 0;
       punchFlash = 0;
-      spawnCooldown = 90;
+      spawnCooldown = 60 + Math.random() * 60;
       distance = 0;
+      lastTime = 0;
+      nextCloudSpawn = 0;
       dino.y = jumpY;
       dino.vy = 0;
       dino.onGround = true;
@@ -293,9 +302,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (e.key === ' ' || e.key === 'ArrowUp') {
         if (dino.onGround) {
-          dino.vy = -13.8;
+          dino.vy = -(12.8 + Math.random() * 2.8);
           dino.onGround = false;
-          addParticles(dino.x + 10, dino.y + 34, '#ffd700', 8);
+          addParticles(dino.x + 10, dino.y + 34, '#ffd700', 6 + Math.floor(Math.random() * 6));
         }
         return;
       }
@@ -312,50 +321,58 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', keyHandler);
     document.addEventListener('keyup', keyUpHandler);
 
-    function update() {
-      frame++;
+    function update(delta) {
+      frame += delta;
       if (flash > 0) flash--;
       if (shake > 0) shake--;
 
       clouds.forEach(c => {
-        c.x -= c.speed;
+        c.x -= c.speed * delta;
         if (c.x < -60) {
           c.x = W + 80 + Math.random() * 120;
           c.y = 50 + Math.random() * 180;
-          c.speed = 0.5 + Math.random() * 1.2;
+          c.speed = 0.4 + Math.random() * 1.5;
+          c.size = 0.8 + Math.random() * 1.5;
         }
       });
-      if (clouds.length < 4) {
-        clouds.push({ x: W + Math.random() * 200, y: 40 + Math.random() * 180, speed: 0.5 + Math.random() * 1.2 });
+      nextCloudSpawn -= delta;
+      if (clouds.length < 3 || nextCloudSpawn <= 0) {
+        clouds.push({
+          x: W + Math.random() * 200,
+          y: 40 + Math.random() * 180,
+          speed: 0.4 + Math.random() * 1.5,
+          size: 0.8 + Math.random() * 1.5
+        });
+        nextCloudSpawn = 18 + Math.random() * 36;
       }
 
       if (gameState !== 'playing') {
         particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.18;
-          p.life--;
+          p.x += p.vx * delta;
+          p.y += p.vy * delta;
+          p.vy += 0.18 * delta;
+          p.life -= delta;
         });
         particles = particles.filter(p => p.life > 0);
         return;
       }
 
-      score += 1;
-      distance += speed / 12;
-      speedUp += 0.0006;
+      score += delta;
+      distance += (speed * delta) / 12;
+      speedUp += 0.0006 * delta;
       speed = 7.5 + Math.min(5.5, speedUp * 18);
 
-      spawnCooldown--;
+      spawnCooldown -= delta;
       if (spawnCooldown <= 0) {
         spawnObstacle();
-        if (distance > 500 && Math.random() < 0.12) spawnObstacle();
-        const minGap = Math.max(48, 92 - Math.floor(speed * 3));
-        spawnCooldown = minGap + Math.floor(Math.random() * 22);
+        if (distance > 500 && Math.random() < 0.18) spawnObstacle();
+        const minGap = Math.max(36, 96 - Math.floor(speed * 4));
+        spawnCooldown = minGap + Math.random() * 34;
       }
 
       if (!dino.onGround) {
-        dino.y += dino.vy;
-        dino.vy += 0.66;
+        dino.y += dino.vy * delta;
+        dino.vy += 0.66 * delta;
         if (dino.y >= jumpY) {
           dino.y = jumpY;
           dino.vy = 0;
@@ -367,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       obstacles = obstacles.filter(ob => {
-        ob.x -= speed;
+        ob.x -= speed * delta;
 
         const dinoW = duck && dino.onGround ? DINO_W + 6 : DINO_W;
         const dinoH = duck && dino.onGround ? 20 : DINO_H;
@@ -393,10 +410,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.18;
-        p.life--;
+        p.x += p.vx * delta;
+        p.y += p.vy * delta;
+        p.vy += 0.18 * delta;
+        p.life -= delta;
       });
       particles = particles.filter(p => p.life > 0);
       if (punchFlash > 0) punchFlash--;
@@ -412,9 +429,9 @@ document.addEventListener('DOMContentLoaded', () => {
       clouds.forEach(c => {
         ctx.fillStyle = 'rgba(255,255,255,0.10)';
         ctx.beginPath();
-        ctx.arc(c.x, c.y, 16, 0, Math.PI * 2);
-        ctx.arc(c.x + 16, c.y + 4, 20, 0, Math.PI * 2);
-        ctx.arc(c.x + 36, c.y, 14, 0, Math.PI * 2);
+        ctx.arc(c.x, c.y, 16 * c.size, 0, Math.PI * 2);
+        ctx.arc(c.x + 16 * c.size, c.y + 4, 20 * c.size, 0, Math.PI * 2);
+        ctx.arc(c.x + 36 * c.size, c.y, 14 * c.size, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -512,9 +529,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textAlign = 'left';
       ctx.fillStyle = '#ffd700';
       ctx.font = 'bold 18px Oswald, sans-serif';
-      ctx.fillText(`SCORE ${score}`, 16, 26);
+      ctx.fillText(`SCORE ${Math.floor(score)}`, 16, 26);
       ctx.fillStyle = '#cfd8dc';
-      ctx.fillText(`BEST ${bestScore}`, 170, 26);
+      ctx.fillText(`BEST ${Math.floor(bestScore)}`, 170, 26);
 
       ctx.textAlign = 'right';
       ctx.fillStyle = '#9ad1ff';
@@ -559,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillText(`SCORE ${Math.floor(score / 10)}`, W / 2, 220);
       ctx.fillStyle = '#d0d0d0';
       ctx.font = '18px Inter, sans-serif';
-      ctx.fillText(`BEST ${bestScore}`, W / 2, 256);
+      ctx.fillText(`BEST ${Math.floor(bestScore)}`, W / 2, 256);
       ctx.fillText('Enter / Space で再戦', W / 2, 320);
       ctx.fillText('Esc で終了', W / 2, 350);
     }
@@ -584,7 +601,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loop() {
       if (!overlay.parentNode) return;
-      update();
+      const now = performance.now();
+      const delta = lastTime ? Math.min(2, (now - lastTime) / 16.6667) : 1;
+      lastTime = now;
+      update(delta);
       draw();
       requestAnimationFrame(loop);
     }

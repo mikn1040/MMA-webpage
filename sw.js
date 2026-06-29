@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'mma-spirit-v4';
+const CACHE_VERSION = 'mma-spirit-v5';
 const CACHE_NAME = `mma-spirit-cache-${CACHE_VERSION}`;
 
 const ASSETS = [
